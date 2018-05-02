@@ -5,9 +5,12 @@
 module.exports = function umlPlugin(md, options) {
 
   function generateSourceDefault(umlCode) {
-    var deflate = require('./lib/deflate.js');
+    var pako = require('pako');
+    var encode64 = require('./encode64');
+    console.log('encode', encode64('вася'));
     var zippedCode =
-      deflate.encode64(deflate.zip_deflate('@startuml\n' + umlCode + '\n@enduml', 9));
+      encode64(pako.deflate('@startuml\n' + umlCode + '\n@enduml', { to: 'string' }));
+      // encode64(pako.gzip('@startuml\n' + umlCode + '\n@enduml', { to: 'string' }));
     return 'http://www.plantuml.com/plantuml/svg/' + zippedCode;
   }
 
