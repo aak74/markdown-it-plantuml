@@ -20,5 +20,8 @@
     "markdown-it": "8.4.0",
     "markdown-it-testgen": "0.1.4",
     "mocha": "4.0.1"
+  },
+  "dependencies": {
+    "pako": "^1.0.6"
   }
 }

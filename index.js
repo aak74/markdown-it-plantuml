@@ -7,10 +7,8 @@ module.exports = function umlPlugin(md, options) {
   function generateSourceDefault(umlCode) {
     var pako = require('pako');
     var encode64 = require('./encode64');
-    console.log('encode', encode64('вася'));
     var zippedCode =
       encode64(pako.deflate('@startuml\n' + umlCode + '\n@enduml', { to: 'string' }));
-      // encode64(pako.gzip('@startuml\n' + umlCode + '\n@enduml', { to: 'string' }));
     return 'http://www.plantuml.com/plantuml/svg/' + zippedCode;
   }
 
